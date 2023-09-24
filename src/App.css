@@ -12,3 +12,8 @@
 .subtitle {
   margin: 0;
 }
+
+img {
+  height: 10rem;
+  width: 40;
+}
