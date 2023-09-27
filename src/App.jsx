@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import {clothing} from './data'
 
@@ -11,26 +11,29 @@ function App() {
   const [selectedBottom, setSelectedBottom] = useState()
   const [selectedShoe, setSelectedShoe] = useState()
 
-  const fillTypes = async () => {
-    const fillTops = await clothing.filter(item => item.type === 'top')
-    let fillBottoms = clothing.filter((item) => item.type === 'bottom')
-    let fillShoes = clothing.filter((item) => item.type === 'shoes')
-    setTops(fillTops)
-    setBottoms(fillBottoms)
-    setShoes(fillShoes)
-    console.log(fillTops)
-    console.log('inside fill')
-    console.log(tops)
-  }
+  useEffect(() => {
+    const fillTypes = async () => {
+      const fillTops = await clothing.filter(item => item.type === 'top')
+      const fillBottoms = await clothing.filter((item) => item.type === 'bottom')
+      const fillShoes = await clothing.filter((item) => item.type === 'shoes')
+      setTops(fillTops)
+      setBottoms(fillBottoms)
+      setShoes(fillShoes)
+      console.log(fillTops)
+      console.log('inside fill')
+      console.log(tops)
+    }
+    fillTypes()
+  },[])
   // fillTypes()
   // console.log('outside')
-  // console.log(tops)
+  console.log(tops)
   
   
-  const displayFit = async (e) => {
-    await fillTypes()
-    console.log('inside fit')
-    await console.log(tops);
+  const displayFit = (e) => {
+    // await fillTypes()
+    // console.log('inside fit')
+    // await console.log(tops);
     let category = e.target.name
     switch (category) {
       case 'casual':
